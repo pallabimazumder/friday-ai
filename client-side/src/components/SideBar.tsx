@@ -6,7 +6,6 @@ import { FiFeather, FiMoon, FiSun } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../redux/userSlice';
 
-
 const SideBar = (props: any) => {
     const { userData, handleLogout } = props;
 
@@ -19,6 +18,24 @@ const SideBar = (props: any) => {
     const mutedText = isDarkTheme ? 'text-slate-400' : 'text-slate-500';
     const secondaryText = isDarkTheme ? 'text-slate-300' : 'text-slate-700';
     const borderClass = isDarkTheme ? 'border-white/10' : 'border-[#e5e1d9]';
+
+    const retrieveUserAvater = () => {
+        return userData?.avatar ? (
+            <img
+                src={userData.avatar}
+                alt={userData.name}
+                className='h-5 w-5 rounded-full object-cover flex-shrink-0'
+                crossOrigin='anonymous'
+                referrerPolicy='no-referrer'
+                onError={(event: any) => {
+                    console.error('Avatar image failed to load:', userData.avatar);
+                    event.currentTarget.style.display = 'none';
+                }}
+            />
+        ) : (
+            <div className='h-5 w-5 rounded-full bg-slate-400 flex-shrink-0' />
+        )
+    };
 
     return (
         <aside className={`flex ${isCollapsed ? 'w-[84px]' : 'w-[260px]'} shrink-0 flex-col border-r px-3 py-4 transition-all duration-200 ${sidebarBg} ${borderClass}`}>
@@ -75,6 +92,7 @@ const SideBar = (props: any) => {
                 {!isCollapsed && 'New chat'}
             </button>
 
+            {/** Hard-coded for now - needs to be api integrated */}
             {!isCollapsed && (
                 <div className='mt-2 flex-1 space-y-2 overflow-hidden'>
                     <div className={`rounded-xl px-3 py-2 text-sm ${isDarkTheme ? 'bg-white/5 text-slate-200' : 'bg-[#f3f1ee] text-slate-700'}`}>Recent</div>
@@ -90,21 +108,7 @@ const SideBar = (props: any) => {
 
             {!isCollapsed && userData && (
                 <div className={`rounded-xl border p-3 flex items-center gap-3 ${isDarkTheme ? 'border-white/10 bg-[#151b25]' : 'border-[#e7e2d9] bg-[#f9f7f4]'}`}>
-                    {userData?.avatar ? (
-                        <img
-                            src={userData.avatar}
-                            alt={userData.name}
-                            className='h-8 w-8 rounded-full object-cover flex-shrink-0'
-                            crossOrigin='anonymous'
-                            referrerPolicy='no-referrer'
-                            onError={(e) => {
-                                console.error('Avatar image failed to load:', userData.avatar);
-                                e.currentTarget.style.display = 'none';
-                            }}
-                        />
-                    ) : (
-                        <div className='h-8 w-8 rounded-full bg-slate-400 flex-shrink-0' />
-                    )}
+                    {retrieveUserAvater()}
                     <div className='min-w-0 flex-1'>
                         <p className={`text-sm font-medium truncate ${secondaryText}`}>{userData.name}</p>
                     </div>
@@ -124,21 +128,7 @@ const SideBar = (props: any) => {
 
             {isCollapsed && userData && (
                 <div className={`rounded-lg border p-2 flex items-center justify-center group relative ${isDarkTheme ? 'border-white/10 bg-[#151b25]' : 'border-[#e7e2d9] bg-[#f9f7f4]'}`}>
-                    {userData?.avatar ? (
-                        <img
-                            src={userData.avatar}
-                            alt={userData.name}
-                            className='h-5 w-5 rounded-full object-cover'
-                            crossOrigin='anonymous'
-                            referrerPolicy='no-referrer'
-                            onError={(e) => {
-                                console.error('Avatar image failed to load:', userData.avatar);
-                                e.currentTarget.style.display = 'none';
-                            }}
-                        />
-                    ) : (
-                        <div className='h-5 w-5 rounded-full bg-slate-400' />
-                    )}
+                    {retrieveUserAvater()}
                     <button
                         type='button'
                         onClick={handleLogout}

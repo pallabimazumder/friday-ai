@@ -99,6 +99,7 @@ const Home = () => {
     const softBadgeClass = isDarkMode
         ? 'border-[#2d3a4a] bg-[#202a36] text-[#dfeaf8]'
         : 'border-[#e5e0d7] bg-[#faf9f6] text-[#6d6b66]';
+        
     return (
         <main className={`relative min-h-screen overflow-hidden ${appShellClass}`}>
             <div
