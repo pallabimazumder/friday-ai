@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GoSidebarCollapse } from 'react-icons/go';
 import { HiOutlineChatAlt2 } from 'react-icons/hi';
 import { IoMdLogOut } from 'react-icons/io';
 import { FiFeather, FiMoon, FiSun } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../redux/userSlice';
+import getConversations from '../features/getConversations';
+import { addConversation, setConversation, setSelectedConversation } from '../redux/conversationSlice';
+import createConversation from '../features/createConversation';
 
 const SideBar = (props: any) => {
     const { userData, handleLogout } = props;
@@ -13,6 +16,20 @@ const SideBar = (props: any) => {
     const { theme } = useSelector((state: any) => state.user);
     const isDarkTheme = theme === 'dark';
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const { conversations, selectedConversation } = useSelector((state: any) => state.conversation);
+
+    useEffect(() => {
+        const getConv = async () => {
+            const conversation = await getConversations();
+            dispatch(setConversation(conversation));
+        }
+        getConv();
+    }, []);
+
+    const handleCreateConversation = async () => {
+        const newChat = await createConversation();
+        dispatch(addConversation(newChat));
+    };
 
     const sidebarBg = isDarkTheme ? 'bg-[#111827] text-[#e5e7eb]' : 'bg-[#f4f3f1] text-[#1f1d1a]';
     const mutedText = isDarkTheme ? 'text-slate-400' : 'text-slate-500';
@@ -87,19 +104,30 @@ const SideBar = (props: any) => {
                     ? 'border-white/10 text-slate-100 hover:bg-white/5'
                     : 'border-[#e5e1d9] text-[#1f1d1a] hover:bg-[#f6f4f1]'
                     } ${isCollapsed ? 'w-10 self-center justify-center py-2 px-2' : 'px-3 py-2'}`}
+                onClick={handleCreateConversation}
             >
                 <HiOutlineChatAlt2 size={16} />
                 {!isCollapsed && 'New chat'}
             </button>
 
-            {/** Hard-coded for now - needs to be api integrated */}
             {!isCollapsed && (
                 <div className='mt-2 flex-1 space-y-2 overflow-hidden'>
-                    <div className={`rounded-xl px-3 py-2 text-sm ${isDarkTheme ? 'bg-white/5 text-slate-200' : 'bg-[#f3f1ee] text-slate-700'}`}>Recent</div>
+                    <div className={`rounded-xl px-3 py-2 text-sm ${isDarkTheme ? 'bg-white/5 text-slate-200' : 'bg-[#f3f1ee] text-slate-700'}`}>
+                        {Array.isArray(conversations) && conversations?.length === 0 ? 'No Recent Conversations' : 'Recents'}
+                    </div>
                     <div className={`space-y-1 text-sm ${mutedText}`}>
-                        <div className={`rounded-lg px-3 py-2 ${isDarkTheme ? 'hover:bg-white/5' : 'hover:bg-[#f0eee9]'}`}>Product strategy</div>
-                        <div className={`rounded-lg px-3 py-2 ${isDarkTheme ? 'hover:bg-white/5' : 'hover:bg-[#f0eee9]'}`}>Research synthesis</div>
-                        <div className={`rounded-lg px-3 py-2 ${isDarkTheme ? 'hover:bg-white/5' : 'hover:bg-[#f0eee9]'}`}>Launch planning</div>
+                        {Array.isArray(conversations) && conversations?.length > 0 && conversations.map((conversation: any) => {
+                            const activeConversation = selectedConversation?._id === conversation._id;
+                            return (
+                                <div
+                                    key={conversation._id}
+                                    className={`rounded-lg px-3 py-2 ${activeConversation ? (isDarkTheme ? 'bg-white/10' : 'bg-[#e0dcd4]') : isDarkTheme ? 'hover:bg-white/5' : 'hover:bg-[#f0eee9]'}`}
+                                    onClick={() => dispatch(setSelectedConversation(conversation))}
+                                >
+                                    {conversation.title}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             )}

@@ -10,6 +10,7 @@ import ChatArea from '../components/ChatArea';
 import Artifact from '../components/Artifact';
 import SideBar from '../components/SideBar';
 import LogoutModal from '../components/LogoutModal';
+import { clearConversation } from '../redux/conversationSlice';
 
 const Home = () => {
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
@@ -47,9 +48,11 @@ const Home = () => {
             console.log('Logout initiated...');
             await endpoint.get('/api/auth/logout');
             dispatch(clearUserData());
+            dispatch(clearConversation());
             setIsLogoutModalOpen(false);
         } catch (error: any) {
             dispatch(clearUserData());
+            dispatch(clearConversation());
             setIsLogoutModalOpen(false);
         } finally {
             setIsLoggingOut(false);
