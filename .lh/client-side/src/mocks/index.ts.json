@@ -1,0 +1,22 @@
+{
+    "sourceFile": "client-side/src/mocks/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1788510460686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1788510489593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n export const mockUser = {\n     id: 'mock-user-1',\n     username: 'Pallabi Mazumder',\n+    password: 'mock-password',\n     email: 'pallabi@friday.ai',\n     avatar: 'https://ui-avatars.com/api/?name=Pallabi+Mazumder&background=6366f1&color=fff&size=64',\n };\n \n"
+                }
+            ],
+            "date": 1788510460686,
+            "name": "Commit-0",
+            "content": "export const mockUser = {\n    id: 'mock-user-1',\n    username: 'Pallabi Mazumder',\n    email: 'pallabi@friday.ai',\n    avatar: 'https://ui-avatars.com/api/?name=Pallabi+Mazumder&background=6366f1&color=fff&size=64',\n};\n\nexport const mockConversations = [\n    { _id: 'c1', title: 'How to build a REST API', userId: 'mock-user-1' },\n    { _id: 'c2', title: 'React performance optimization', userId: 'mock-user-1' },\n    { _id: 'c3', title: 'TypeScript generics explained', userId: 'mock-user-1' },\n    { _id: 'c4', title: 'Design system planning session', userId: 'mock-user-1' },\n    { _id: 'c5', title: 'Database schema review', userId: 'mock-user-1' },\n];\n"
+        }
+    ]
+}

@@ -1,9 +1,186 @@
 @import "tailwindcss";
 
+/* ─── Light (default) ─────────────────────────────────────────── */
 :root {
   color-scheme: light;
+
+  /* Backgrounds */
+  --bg:        #f7f7f5;
+  --surface:   #fbfaf8;
+  --surface-2: #f3f1ee;
+  --surface-3: #faf8f5;
+
+  /* Text */
+  --text:         #262522;
+  --text-heading: #1f1d1a;
+  --text-muted:   #6d6b66;
+  --text-subtle:  #77756e;
+
+  /* Borders */
+  --border:      #d8d1c7;
+  --border-soft: #d4cdc3;
+
+  /* App layout (authenticated shell) */
+  --app-bg:         #f7f7f5;
+  --app-panel:      #f4f2ee;
+  --app-border:     #d8d1c7;
+  --sidebar-bg:     #f4f3f1;
+  --sidebar-border: #bfb8ac;
+
+  /* Buttons */
+  --btn-bg:         #1f1d1a;
+  --btn-text:       #ffffff;
+  --btn-hover:      #3a3631;
+  --btn-ring:       rgba(0, 0, 0, 0.10);
+  --btn-ring-hover: rgba(0, 0, 0, 0.15);
+  --btn-glow:       0 4px 20px rgba(31, 29, 26, 0.22);
+
+  /* Chips — badge + pill share a palette */
+  --chip-bg:     #faf9f6;
+  --chip-border: #e5e0d7;
+  --chip-text:   #6d6b66;
+  --pill-bg:     #fbfaf8;
+  --pill-border: #e0dbd2;
+  --pill-text:   #5d5a54;
+
+  /* Icon tile */
+  --icon-bg:   #eceae4;
+  --icon-text: #5a5650;
+
+  /* Logo mark */
+  --logo-bg:   #252522;
+  --logo-text: #f7f7f5;
+
+  /* Theme toggle button */
+  --toggle-bg:     #ffffff;
+  --toggle-border: #c1bab0;
+  --toggle-text:   #292824;
+  --toggle-hover:  #f5f2ee;
+
+  /* Sidebar list items */
+  --list-header-bg: #e9e3db;
+  --list-hover:     #ece7e0;
+  --list-active:    #ddd6cc;
+
+  /* Agent demo cards (landing page) */
+  --agent-light-bg:    #fffdfb;
+  --agent-light-ring:  #eee7dd;
+  --agent-light-label: #7d7a73;
+  --agent-light-body:  #38352f;
+  --agent-dark-bg:     #1c1b1a;
+  --agent-dark-label:  #d8d1cb;
+  --agent-dark-body:   #f1ece8;
+
+  /* Demo card shells */
+  --demo-outer-bg:     #fbfaf8;
+  --demo-outer-border: #e2ddd3;
+  --demo-inner-bg:     #f3f1ee;
+  --demo-inner-border: #e6e0d7;
+  --demo-header-text:  #7b7873;
+  --demo-shadow:       0 28px 80px rgba(31, 29, 26, 0.10);
+
+  /* Nav (when scrolled) */
+  --nav-scrolled-bg:     rgb(247 247 245 / 0.80);
+  --nav-scrolled-border: #e6e1d9;
+
+  /* Chat input */
+  --input-bg:     #ffffff;
+  --input-border: #e0dbd2;
+  --input-focus:  #c9c3ba;
+
+  /* User message bubble */
+  --user-msg-bg:   #f0ece4;
+  --user-msg-text: #1f1d1a;
+
+  /* Misc */
+  --dot:       #d8d5cd;
+  --selection: #e8e1d3;
 }
 
+/* ─── Dark ────────────────────────────────────────────────────── */
+.dark {
+  color-scheme: dark;
+
+  --bg:        #1c1b22;
+  --surface:   #201f2a;
+  --surface-2: #252430;
+  --surface-3: #1c1b2a;
+
+  --text:         #dfe8f4;
+  --text-heading: #e2e8f4;
+  --text-muted:   #9da9bb;
+  --text-subtle:  #b0bccf;
+
+  --border:      #2a2838;
+  --border-soft: #2d2b3e;
+
+  --app-bg:         #0d0c14;
+  --app-panel:      #0e0d18;
+  --app-border:     rgba(255, 255, 255, 0.10);
+  --sidebar-bg:     #111827;
+  --sidebar-border: rgba(255, 255, 255, 0.10);
+
+  --btn-bg:         #2c2a3c;
+  --btn-text:       #e0e8f4;
+  --btn-hover:      #382f4e;
+  --btn-ring:       rgba(255, 255, 255, 0.10);
+  --btn-ring-hover: rgba(255, 255, 255, 0.20);
+  --btn-glow:       0 0 28px rgba(180, 160, 220, 0.10);
+
+  --chip-bg:     #1f1e2c;
+  --chip-border: #2c2a3a;
+  --chip-text:   #d4dfee;
+  --pill-bg:     #1f1e2c;
+  --pill-border: #2d2b3e;
+  --pill-text:   #d4dfee;
+
+  --icon-bg:   #191829;
+  --icon-text: #7aa2d4;
+
+  --logo-bg:   #e4e2f0;
+  --logo-text: #171b22;
+
+  --toggle-bg:     #221f2e;
+  --toggle-border: #342f48;
+  --toggle-text:   #e0e8f2;
+  --toggle-hover:  #282340;
+
+  --list-header-bg: rgba(255, 255, 255, 0.05);
+  --list-hover:     rgba(255, 255, 255, 0.05);
+  --list-active:    rgba(255, 255, 255, 0.10);
+
+  --agent-light-bg:    #16182a;
+  --agent-light-ring:  #221f38;
+  --agent-light-label: #cdd8e8;
+  --agent-light-body:  #d4dfee;
+  --agent-dark-bg:     #231f2e;
+  --agent-dark-label:  #d4dfee;
+  --agent-dark-body:   #f1ece8;
+
+  --demo-outer-bg:     #201f2a;
+  --demo-outer-border: #29273a;
+  --demo-inner-bg:     #252430;
+  --demo-inner-border: #2a2838;
+  --demo-header-text:  #ccd7e7;
+  --demo-shadow:       0 28px 80px rgba(0, 0, 0, 0.25);
+
+  --nav-scrolled-bg:     rgb(28 27 34 / 0.80);
+  --nav-scrolled-border: #1d1c2a;
+
+  /* Chat input */
+  --input-bg:     #0e0d18;
+  --input-border: #1e1c2e;
+  --input-focus:  #2c2a40;
+
+  /* User message bubble */
+  --user-msg-bg:   #1e1d30;
+  --user-msg-text: #dfe8f4;
+
+  --dot:       #1e1d28;
+  --selection: #2c2a3c;
+}
+
+/* ─── Global ──────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
@@ -11,9 +188,27 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: #f7f7f5;
+  background: var(--bg);
 }
 
+::selection {
+  background-color: var(--selection);
+}
+
+/* ─── CTA button (landing page) ──────────────────────────────── */
+.btn-cta {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  box-shadow: 0 0 0 1px var(--btn-ring);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-cta:hover {
+  background-color: var(--btn-hover);
+  box-shadow: 0 0 0 1px var(--btn-ring-hover), var(--btn-glow);
+}
+
+/* ─── Utilities ───────────────────────────────────────────────── */
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -23,6 +218,7 @@ body {
   display: none;
 }
 
+/* ─── Animations ──────────────────────────────────────────────── */
 @media (min-width: 768px) {
   .gentle-scroll {
     animation: gentle-pan 22s ease-in-out infinite alternate;
@@ -30,17 +226,28 @@ body {
 }
 
 @keyframes gentle-pan {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-12px);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-12px); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fade-in-up 0.45s ease forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gentle-scroll {
+  .gentle-scroll,
+  .animate-fade-in-up {
     animation: none;
+  }
+
+  .animate-fade-in-up {
+    opacity: 1;
   }
 
   html {
